@@ -1,30 +1,19 @@
-import { Env, Opt } from './.';
+import { Env, Opt } from './index.js';
 
 export abstract class Solver {
-  protected env: Env;
-  protected opt: Opt;
+  constructor(protected env: Env, protected opt: Opt) {}
 
-  constructor(env: Env, opt: Opt) {
-    this.env = env;
-    this.opt = opt;
-  }
-
-  public getOpt(): any {
+  getOpt() {
     return this.opt;
   }
 
-  public getEnv(): any {
+  getEnv() {
     return this.env;
   }
 
-  /**
-   * Decide an action according to current state
-   * @param state current state
-   * @returns decided action
-   */
-  public abstract decide(stateList: any): number;
-  public abstract learn(r1: number): void;
-  public abstract reset(): void;
-  public abstract toJSON(): object;
-  public abstract fromJSON(json: {}): void;
+  abstract decide(stateList: any): number;
+  abstract learn(r1: number): void;
+  abstract reset(): void;
+  abstract toJSON(): object;
+  abstract fromJSON(json: {}): void;
 }
